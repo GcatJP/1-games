@@ -31,26 +31,28 @@
       }
       /* back button (top-left corner) */
       .reset-btn {
-        position: absolute;
-        top: max(6px, env(safe-area-inset-top, 6px));
+        position: fixed;
+        top: max(10px, env(safe-area-inset-top, 10px));
         left: max(10px, env(safe-area-inset-left, 10px));
-        z-index: 2;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(36px, 8vw, 48px);
+        height: clamp(36px, 8vw, 48px);
         background: var(--bark);
         color: var(--white);
-        border: none;
-        border-radius: 999px;
-        padding: 4px 12px;
-        font-size: clamp(10px, 2vw, 14px);
-        white-space: nowrap;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 3px 0 darkblue;
-        font-family: inherit;
+        border-radius: 50%;
         text-decoration: none;
+        font-size: clamp(16px, 4vw, 22px);
+        box-shadow: 0 3px 0 #12047a;
+        transition:
+          transform 0.1s,
+          box-shadow 0.1s;
       }
       .reset-btn:active {
         transform: translateY(2px);
-        box-shadow: none;
+        box-shadow: 0 1px 0 var(--bark-dark);
       }
 
       * {

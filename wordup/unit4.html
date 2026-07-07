@@ -247,7 +247,7 @@
         transition: transform 0.1s ease;
         font-family: "Chalkboard SE", "Comic Sans MS", cursive, sans-serif;
         font-weight: bold;
-        font-size: clamp(2.5rem, 10vw, 5.5rem);
+        font-size: clamp(2.5rem, 20vmin, 7rem);
         color: var(--ocean-deep);
         line-height: 1;
       }
@@ -455,7 +455,7 @@
     <div class="wrap">
       <div class="header">
         <a class="reset-btn" href="index.html">⬅️ Back</a>
-        <h1>Unit 2</h1>
+        <h1>Unit 4</h1>
         <button class="reset-btn" id="resetBtn">Play Again 🐡</button>
       </div>
 
@@ -506,10 +506,12 @@
          Every round, this full list is duplicated (so each item shows
          twice) then shuffled. */
       const QUESTIONS = [
-        { audio: "../audio/a.mp3", text: "a" },
-        { audio: "../audio/t.mp3", text: "t" },
-        { audio: "../audio/h.mp3", text: "h" },
-        { audio: "../audio/c.mp3", text: "c" },
+        { audio: "../audio/a.m4a", text: "a" },
+        { audio: "../audio/d.m4a", text: "d" },
+        { audio: "../audio/j.m4a", text: "j" },
+        { audio: "../audio/m.m4a", text: "m" },
+        { audio: "../audio/cat.m4a", text: "cat" },
+        { audio: "../audio/hat.m4a", text: "hat" },
       ];
 
       /* ---- sound effects (Web Audio API) ---- */
@@ -556,24 +558,35 @@
 
       /* ---- question audio playback (your own sound files) ---- */
       let currentAudio = null;
-      function playAudio(src, btnEl) {
+      function playAudio(src, btnEl, repeats = 3) {
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
         }
-        currentAudio = new Audio(src);
-        if (btnEl) btnEl.classList.add("speaking");
-        currentAudio.addEventListener("ended", () => {
-          if (btnEl) btnEl.classList.remove("speaking");
-        });
-        currentAudio.addEventListener("error", () => {
-          if (btnEl) btnEl.classList.remove("speaking");
-        });
-        currentAudio.play().catch(() => {
-          if (btnEl) btnEl.classList.remove("speaking");
-        });
-      }
 
+        let playCount = 0;
+        if (btnEl) btnEl.classList.add("speaking");
+
+        function playOnce() {
+          playCount++;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", () => {
+            if (playCount < repeats) {
+              playOnce();
+            } else if (btnEl) {
+              btnEl.classList.remove("speaking");
+            }
+          });
+          currentAudio.addEventListener("error", () => {
+            if (btnEl) btnEl.classList.remove("speaking");
+          });
+          currentAudio.play().catch(() => {
+            if (btnEl) btnEl.classList.remove("speaking");
+          });
+        }
+
+        playOnce();
+      }
       function shuffle(arr) {
         const a = arr.slice();
         for (let i = a.length - 1; i > 0; i--) {

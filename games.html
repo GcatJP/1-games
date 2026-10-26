@@ -183,17 +183,19 @@
           margin-top: 2vh;
         }
 
+        /* 4 buttons: 2 x 2 */
         .grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-template-rows: 1fr;
-          gap: clamp(6px, 1.4vw, 16px);
-          width: min(96vw, 1300px);
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          gap: clamp(8px, 2vw, 24px);
+          width: min(85vw, 900px);
+          height: min(70vh, 460px);
         }
 
         .btn {
-          font-size: clamp(1rem, 5vw, 3.6rem);
-          height: clamp(80px, 45vh, 220px);
+          font-size: clamp(1rem, 4vw, 3.2rem);
+          height: 100%;
         }
       }
 
@@ -249,8 +251,8 @@
         .grid {
           display: grid;
           grid-template-columns: 1fr;
-          grid-template-rows: repeat(3, 1fr);
-          gap: clamp(8px, 6vw, 60px);
+          grid-template-rows: repeat(4, 1fr);
+          gap: clamp(8px, 3.5vw, 36px);
           width: 100%;
           max-width: 520px;
           min-height: 0;
@@ -258,7 +260,7 @@
 
         .btn {
           font-size: clamp(1rem, 8vw, 3.4rem);
-          height: clamp(70px, 24vw, 220px);
+          height: clamp(70px, 22vw, 200px);
         }
       }
 
@@ -277,13 +279,13 @@
         }
 
         .grid {
-          gap: 23px !important;
+          gap: 16px !important;
           width: 100% !important;
           margin-top: -5vh !important;
         }
 
         .btn {
-          height: clamp(80px, 30vw, 180px) !important;
+          height: clamp(80px, 28vw, 170px) !important;
           font-size: clamp(1rem, 10vw, 3.1rem) !important;
         }
       }
@@ -308,6 +310,11 @@
         <a class="btn" href="typeup/index.html">
           <span class="btn-text">Type Up!</span>
           <img class="btn-icon" src="./images/st1.png" alt="Sami" />
+        </a>
+
+        <a class="btn" href="drag/index.html">
+          <span class="btn-text">Drag and Drop</span>
+          <img class="btn-icon" src="./images/drag.png" alt="" />
         </a>
       </div>
     </div>
